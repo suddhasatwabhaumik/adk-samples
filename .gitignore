@@ -26,6 +26,7 @@ var/
 wheels/
 share/python-wheels/
 *.egg-info/
+src/*egg*
 .installed.cfg
 pyvenv.cfg
 *.egg
