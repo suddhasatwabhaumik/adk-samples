@@ -1,0 +1,11 @@
+question,ground_truth_sql
+"What is the baseline price of part number 503687JEE?","SELECT BASELINE_PRICE FROM vece_assist_consumption_ds.baseline_price_vw WHERE PART_NUMBER = '503687JEE';"
+"What is the part with highest baseline price in PSS GBE?","SELECT PART_NUMBER, PART_NAME, BASELINE_PRICE FROM vece_assist_consumption_ds.baseline_price_vw WHERE GBE_NAME = 'PSS' ORDER BY BASELINE_PRICE DESC LIMIT 1"
+"List the PSS GBE parts with multiple baseline prices across sites","SELECT PART_NUMBER, SITE_ID, SITE_NAME, COUNT(DISTINCT BASELINE_PRICE) AS DISTINCT_BASELINE_PRICE FROM vece_assist_consumption_ds.baseline_price_vw WHERE GBE_NAME = 'PSS' GROUP BY PART_NUMBER, SITE_ID, SITE_NAME HAVING COUNT(DISTINCT BASELINE_PRICE) > 1;"
+"List the parts with multiple baseline price in plant 4257","SELECT PART_NUMBER, PART_NAME FROM vece_assist_consumption_ds.baseline_price_vw WHERE PLANT = '4257' GROUP BY PART_NUMBER, PART_NAME HAVING COUNT(DISTINCT BASELINE_PRICE) > 1;"
+"How many baseline price exists for part 57-124746-01FRE?","SELECT COUNT(*) FROM vece_assist_consumption_ds.baseline_price_vw WHERE PART_NUMBER = '57-124746-01FRE'"
+"Give me the spend by year of part 07094SM","SELECT PURCHASE_YEAR, SUM(SPEND) AS TOTAL_SPEND FROM vece_assist_consumption_ds.purchase_order_details_vw WHERE PART_NUMBER = '07094SM' GROUP BY PURCHASE_YEAR ORDER BY PURCHASE_YEAR"
+"Give me current year spend of part 07094SM","SELECT PART_NUMBER, SUM(SPEND) AS TOTAL_SPEND FROM vece_assist_consumption_ds.purchase_order_details_vw WHERE PART_NUMBER = '07094SM' AND PURCHASE_YEAR= EXTRACT(YEAR FROM CURRENT_DATE()) GROUP BY 1"
+"Give me last year spend of part 07094SM","SELECT PART_NUMBER, SUM(SPEND) AS TOTAL_SPEND FROM vece_assist_consumption_ds.purchase_order_details_vw WHERE PART_NUMBER = '07094SM' AND PURCHASE_YEAR= EXTRACT(YEAR FROM CURRENT_DATE())-1 GROUP BY 1"
+"Give me the spend of part I87-0438-000","SELECT PART_NUMBER, SUM(SPEND) AS TOTAL_SPEND FROM vece_assist_consumption_ds.purchase_order_details_vw WHERE PART_NUMBER = 'I87-0438-000' GROUP BY PART_NUMBER;"
+"Give me total spend of part I87-0438-000 for the year 2024","SELECT PART_NUMBER, SUM(SPEND) AS TOTAL_SPEND FROM vece_assist_consumption_ds.purchase_order_details_vw WHERE PART_NUMBER = 'I87-0438-000' AND PURCHASE_YEAR= 2024 GROUP BY PART_NUMBER"

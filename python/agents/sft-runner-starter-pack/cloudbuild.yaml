@@ -1,0 +1,58 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+steps:
+  # 1. Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'build',
+        '-t',
+        '${_AR_HOST}/${_PROJECT_ID}/${_REPO_NAME}/${_SERVICE_NAME}:$SHORT_SHA',
+        '.',
+      ]
+
+  # 2. Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        '${_AR_HOST}/${_PROJECT_ID}/${_REPO_NAME}/${_SERVICE_NAME}:$SHORT_SHA',
+      ]
+
+  # 3. Deploy the image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run',
+        'deploy',
+        '${_SERVICE_NAME}',
+        '--image=${_AR_HOST}/${_PROJECT_ID}/${_REPO_NAME}/${_SERVICE_NAME}:$SHORT_SHA',
+        '--region',
+        '${_REGION}',
+        '--platform',
+        'managed',
+      ]
+
+# Make the built image available for the deploy step
+images:
+  - '${_AR_HOST}/${_PROJECT_ID}/${_REPO_NAME}/${_SERVICE_NAME}:$SHORT_SHA'
+
+# Define variables that can be passed in
+substitutions:
+  _SERVICE_NAME: 'sft-runner-starter-pack'
+  _REGION: 'us-central1'
+  _AR_HOST: 'us-central1-docker.pkg.dev'
+  _REPO_NAME: 'sft-runner-starter-pack'
+  _PROJECT_ID: 'YOUR-PROJECT-ID'

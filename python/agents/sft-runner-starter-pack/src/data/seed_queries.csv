@@ -1,0 +1,6 @@
+"question","ground_truth_sql"
+"What is the baseline price for part number '503687JEE'?","SELECT BASELINE_PRICE FROM `sb-genai-project.sft.test_data` WHERE PART_NUMBER = '503687JEE'"
+"Show me the total spend for the 'Fire' GBE in 2023.","SELECT SUM(SPEND) AS total_spend FROM `sb-genai-project.sft.test_data` WHERE GBE_NAME = 'Fire' AND PURCHASE_YEAR = 2023"
+"How many unique parts are in the inventory?","SELECT COUNT(DISTINCT PART_NUMBER) FROM `sb-genai-project.sft.test_data`"
+"List the top 5 suppliers by spend.","SELECT SUPPLIER_NAME, SUM(SPEND) AS total_spend FROM `sb-genai-project.sft.test_data` GROUP BY SUPPLIER_NAME ORDER BY total_spend DESC LIMIT 5"
+"Find the EOL status for part 'I87-0004-000'.","SELECT ESTIMATED_YEARS_TO_EOL FROM `sb-genai-project.sft.test_data` WHERE PART_NUMBER = 'I87-0004-000'"

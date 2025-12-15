@@ -1,0 +1,31 @@
+sources:
+  my_bigquery_source:
+    kind: "bigquery"
+    project: "YOUR-PROJECT-ID"
+
+tools:
+  execute_sql:
+    kind: "bigquery-execute-sql"
+    source: "my_bigquery_source"
+    description: "Executes a GoogleSQL query against the BigQuery database and returns the result as a DataFrame."
+    parameters:
+      - name: "query"
+        type: "string"
+        description: "The GoogleSQL query to execute."
+
+  get_table_schema:
+    kind: "bigquery-sql"
+    source: "my_bigquery_source"
+    description: "Returns the schema for a specific table in a given dataset."
+    statement: |
+      SELECT column_name, data_type
+      FROM `YOUR-PROJECT-ID.sft.INFORMATION_SCHEMA.COLUMNS`
+      WHERE table_name = 'test_data'
+
+  list_tables:
+    kind: "bigquery-sql"
+    source: "my_bigquery_source"
+    description: "Lists all tables in a given dataset."
+    statement: |
+      SELECT table_name
+      FROM `YOUR-PROJECT-ID.sft.INFORMATION_SCHEMA.TABLES`
