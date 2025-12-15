@@ -19,8 +19,8 @@ from pathlib import Path
 from typing import Optional
 from dotenv import load_dotenv
 
-# Load environment variables from .env file if it exists
-env_path = Path(__file__).parent / ".env"
+# Load environment variables from .config file if it exists
+env_path = Path(__file__).parent / ".config"
 if env_path.exists():
     load_dotenv(env_path)
 

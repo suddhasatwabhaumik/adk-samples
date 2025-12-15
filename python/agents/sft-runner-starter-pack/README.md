@@ -192,7 +192,7 @@ substitutions:
   _PROJECT_ID: 'YOUR-PROJECT-ID-HERE'       # Replace with your Project ID
 ```
 
-Additionally, open [`.env`](src/.env) file and update 
+Additionally, open [`.config`](src/.config) file and update 
 - `YOUR-PROJECT-ID` with your actual GCP Project ID.
 - `YOUR-BQ-DATASET-ID` with the actual BQ dataset where you have your data tables/views.
 - `YOUR-BUCKET-ID` with the actual temporary GCS Bucket which the application will use.
@@ -237,7 +237,7 @@ The application runs inside a secure, non-root container environment:
   * **Context:** Copies the local directory into the image.
 
 > **Note on Environment Variables:**
-> Since the `Dockerfile` copies local files (`COPY . .`), your local `.env` file will be included in the container. For production environments, it is recommended to exclude `.env` via `.dockerignore` and set secrets directly in the Cloud Run configuration using Google Secret Manager.
+> Since the `Dockerfile` copies local files (`COPY . .`), your local `.config` file will be included in the container. For production environments, it is recommended to exclude `.config` via `.dockerignore` and set secrets directly in the Cloud Run configuration using Google Secret Manager.
 
 ## 📂 Project Structure
 

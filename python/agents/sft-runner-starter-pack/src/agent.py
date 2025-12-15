@@ -107,7 +107,7 @@ full_pipeline_agent = SequentialAgent(
 # --- State Setup ---
 def setup_before_agent_call(callback_context: CallbackContext):
     """Sets up the initial state for the agent from environment variables."""
-    print("--- Setting up initial state from .env file ---")
+    print("--- Setting up initial state from .config file ---")
 
     callback_context.state["seed_data_path"] = (
         config.seed_queries
