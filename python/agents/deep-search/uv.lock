@@ -8,7 +8,7 @@ resolution-markers = [
 
 [[package]]
 name = "agent-starter-pack"
-version = "0.28.0"
+version = "0.28.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "backoff" },
@@ -20,9 +20,9 @@ dependencies = [
     { name = "rich" },
     { name = "tomli", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/aa/9d/76c11dc23e329a9fa4a6fbb264194c7100ab864dd6cacd8fdcc1b617f781/agent_starter_pack-0.28.0.tar.gz", hash = "sha256:944d444324fdaa2168cf10691e9990e1ab88c420426e5378eebed17528bdcb8e", size = 12371153, upload-time = "2025-12-12T14:59:32.482Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e9/db/5dfd13b0af05de58b91c784aab70950fde38afb006f7876ccae46e6f5354/agent_starter_pack-0.28.2.tar.gz", hash = "sha256:66251f4c3ed40a6a553bfacecf34ca733eb3347346ccf4c0912b682b638957df", size = 12369846, upload-time = "2025-12-13T18:21:37.763Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1a/a4/4fcd9c22ecae124764109b36e99d898a3345b518b73907fdd42ce040a046/agent_starter_pack-0.28.0-py3-none-any.whl", hash = "sha256:4d1b975824d5e2ad33d7eb07d231567f1ed867863ce0145128fa8ec086ce857a", size = 3289509, upload-time = "2025-12-12T14:59:28.638Z" },
+    { url = "https://files.pythonhosted.org/packages/af/bc/b18f40ad187898503fc91eaa0799f01b6b27048862c32a8e7e04a202ef0c/agent_starter_pack-0.28.2-py3-none-any.whl", hash = "sha256:79f87ab0ce23c76f3d053572237af289a48a24ce9b323996793e5eb184704200", size = 3289725, upload-time = "2025-12-13T18:21:34.903Z" },
 ]
 
 [[package]]
