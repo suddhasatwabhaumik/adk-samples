@@ -122,6 +122,9 @@ We provide an automated script to bootstrap your Google Cloud environment. This 
   * 📦 **Creates Repository:** Sets up a Docker repository named `sft-runner-starter-pack` in `us-central1`.
   * 🛡️ **Configures IAM:** Grants the default Compute Engine Service Account permissions to manage Cloud Run services and write to the Artifact Registry.
 
+> **Note:** We expect that you already have a BigQuery dataset with tables/views which correspond to the actual Business data, pertaining to your
+use case, which would be the `baseline` for the Fine tuned model to generate SQL Queries by understanding its metadata information.
+
 **Run the initialization script:**
 
 ```bash
@@ -189,7 +192,14 @@ substitutions:
   _PROJECT_ID: 'YOUR-PROJECT-ID-HERE'       # Replace with your Project ID
 ```
 
-Additionally,, open `.env` file and update `YOUR-PROJECT-ID` with your actual GCP Project ID.
+Additionally, open [`.env`](src/.env) file and update 
+- `YOUR-PROJECT-ID` with your actual GCP Project ID.
+- `YOUR-BQ-DATASET-ID` with the actual BQ dataset where you have your data tables/views.
+- `YOUR-BUCKET-ID` with the actual temporary GCS Bucket which the application will use.
+
+> **Note:** By BigQuery dataset above, we refer to the tables which contain the actual data on which the Fine tuned
+model is finally supposed to generate SQL on. This application, by its design, will incorporate the available metadata
+of the available tables and views to generate SQL Queries for any given question. 
 
 ### 2\. The Deployment Pipeline
 
